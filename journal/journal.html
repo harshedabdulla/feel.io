@@ -1,35 +1,25 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    /* Center the editing div */
-    #myeditablediv {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 200px; /* Set the height to your desired value */
-      /* width: 400px; Set the width to your desired value */
-      border: 5px solid #ccc; /* Add a border for visual clarity */
-      padding: 10px; /* Add padding for a bit of spacing */
-      margin: 20px;
-    }
-  </style>
-  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-  <script type="text/javascript">
-    tinymce.init({
-      selector: '#myeditablediv',
-      inline: true
-    });
-  </script>
-</head>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<body>
-  <h1>TinyMCE Inline Editing Mode Guide</h1>
-  <form method="post">
-    <div id="myeditablediv">Click here to edit!</div>
-  </form>
-</body>
+    <!-- Include TinyMCE script -->
+    <script
+      src="../journal/js/tinymce/tinymce.min.js"
+      referrerpolicy="origin"
+    ></script>
+    <script src="journal.js"></script>
+    <link rel="stylesheet" href="journal.css" />
+  </head>
+
+  <body>
+    <h1>TinyMCE Quick Start Guide</h1>
+    <div class="text-editor">
+      <form method="post">
+        <textarea id="mytextarea">Hello, World!</textarea>
+      </form>
+      <button type="button" onclick="sendTextToServer()">Submit</button>
+    </div>
+  </body>
 </html>
