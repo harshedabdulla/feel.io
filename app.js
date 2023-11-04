@@ -8,7 +8,7 @@ const nothingButton = document.getElementById("nothing-button");
 const averageButton = document.getElementById("average-button");
 const lowButton = document.getElementById("low-button");
 
-const apiKey = "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"; // Add your OpenAI API key
+const apiKey = ""; // Add your OpenAI API key
 
 let currentStory = ""; // Initialize the story
 
