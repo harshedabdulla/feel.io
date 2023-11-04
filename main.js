@@ -17,16 +17,28 @@ const app = initializeApp(firebaseConfig);
 const db  = getDatabase()
 const dbRef = ref(getDatabase());
 
-    
+const resp1 = await fetch('http://localhost:3000/lasthours', {
+		method: 'POST',
+		headers: {
+            'Access-Control-Allow-Origin': '*',
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+		  
+		},
+		body: JSON.stringify({hours:1}),
+	  })
+const oneHour = await resp1.json();
+console.log(oneHour)  
 
-
+const moodChartCanvas = document.getElementById("moodChart");
 // Sample data for the top 3 emotions at each hour
 const data1 = {
     labels: ["6 hours ago", "5 hours ago", "4 hours ago", "3 hours ago", "2 hours ago", "1 hour ago"],
     emotions: {
         emotion1: [70, 80, 85, 90, 75, 80], // Emotion 1 data1
         emotion2: [60, 90, 75, 80, 70, 75], // Emotion 2 data1
-        emotion3: [50, 83, 65, 93, 60, 65], // Emotion 3 data1
+        emotion3: [50, 83, 65, 93, 60, 65],
+        emotion4: [60, 63, 55, 63, 80, 35], // Emotion 3 data1
     }
 };
 
@@ -34,24 +46,31 @@ const chartData = {
     labels: data1.labels,
     datasets: [
         {
-            label: 'Emotion 1',
+            label: 'Happy',
             data: data1.emotions.emotion1,
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1
         },
         {
-            label: 'Emotion 2',
+            label: 'Sad',
             data: data1.emotions.emotion2,
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1
         },
         {
-            label: 'Emotion 3',
+            label: 'Neutral',
             data: data1.emotions.emotion3,
             backgroundColor: 'rgba(255, 205, 86, 0.2)',
             borderColor: 'rgba(255, 205, 86, 1)',
+            borderWidth: 1
+        },
+        {
+            label: 'Angry',
+            data: data1.emotions.emotion4,
+            backgroundColor: 'rgba(255, 185, 86, 0.2)',
+            borderColor: 'rgba(205, 165, 76, 1)',
             borderWidth: 1
         }
     ]
@@ -93,8 +112,6 @@ const resp = await fetch('http://localhost:3000/lasthours', {
 	  })
 const top3Categories = await resp.json();
 console.log(top3Categories)
-
-const moodChartCanvas = document.getElementById("moodChart");
 
 // Sample data for the three emotions in the "Current Mood" chart
 const x = top3Categories[0] ? top3Categories[0].mood : "";
@@ -166,13 +183,27 @@ new Chart(dailyMoodTrendsCanvas.getContext("2d"), {
 });
 
 // Emotion History Chart (Pie Chart)
+
+const resp2 = await fetch('http://localhost:3000/normalmoods', {
+		method: 'POST',
+		headers: {
+            'Access-Control-Allow-Origin': '*',
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+		  
+		},
+		
+	  })
+const agg = await resp2.json();
+console.log(agg[0].anger) 
+
 const emotionHistoryCanvas = document.getElementById("emotionHistoryChart");
 new Chart(emotionHistoryCanvas.getContext("2d"), {
     type: 'pie',
     data: {
         labels: ['Happy', 'Sad', 'Neutral', 'Angry'],
         datasets: [{
-            data: [25, 15, 30, 10],
+            data: [agg[0].joy, agg[0].sadness, agg[0].neutral, agg[0].anger],
             backgroundColor: ['rgba(75, 192, 192, 0.8)', 'rgba(255, 99, 132, 0.8)', 'rgba(255, 205, 86, 0.8)', 'rgba(54, 162, 235, 0.8)'],
             borderWidth: 1
         }]

@@ -10,7 +10,7 @@ const lowButton = document.getElementById("low-button");
 
 const apiKey = ""; // Add your OpenAI API key
 
-let currentStory = ""; // Initialize the story
+let currentStory = ""; 
 
 happyButton.addEventListener("click", () => {
   sendMessage("happy");
@@ -40,14 +40,21 @@ form.addEventListener("submit", async (e) => {
 });
 
 function sendMessage(mood) {
-  const prompt = `You are embarking on a wonderful journey. As you travel, you feel ${mood}. `;
-  // Append the current story with the new paragraph based on the selected mood.
+  const prompts = {
+    happy: "You are embarking on a wonderful journey. As you travel, you feel happy. ",
+    good: "You are embarking on a thrilling adventure. As you move forward, you feel good. ",
+    nothing: "You find yourself on a path to an unknown destination. You feel neither good nor bad. ",
+    average: "The road ahead is uncertain, but you remain determined. You feel average. ",
+    low: "The journey begins with challenges, but your spirit remains unbroken. You feel low. "
+  };
+
+  const prompt = prompts[mood];
+
   currentStory += `${prompt} `;
   messages.innerHTML += `<div class="message user-message">
     <img src="./woman.png" alt="woman"> <span>${prompt}</span>
   </div>`;
 
-  // Use axios library to make a POST request to the OpenAI API
   axios
     .post(
       "https://api.openai.com/v1/completions",
