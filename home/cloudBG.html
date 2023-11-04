@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    /* Ensure the canvas fills the entire viewport */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    /* Style for the navigation bar */
+    .navbar {
+      background: radial-gradient(circle, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+    /* Style for the navigation bar buttons */
+    .navbar a {
+      float: right; /* Move buttons to the right side */
+      color: white;
+      text-align: center;
+      padding: 15px;
+      text-decoration: none;
+      font-size: 14px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.15);
+      letter-spacing: 1px;
+      font-weight: 500;
+      border-radius: 25px; /* Add rounded borders */
+      margin-left: 15px; /* Add space between buttons */
+    }
+    /* Style for the logo */
+    .logo {
+      float: left;
+      padding: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+      font-family: Arial, sans-serif; /* Use a standard font */
+      margin-right: 15px; /* Match the margin of buttons */
+    }
+  </style>
+</head>
+<body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
+  <script>
+    var setVanta = () => {
+      if (window.VANTA) window.VANTA.CLOUDS({
+        el: "body", // Set the element to the entire body
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 1000.00,
+        minWidth: 200.00
+      });
+    }
+    setVanta(); // Initialize Vanta on page load
+
+    // Reinitialize Vanta when the page is fading in (you can use your specific event here)
+    window.edit_page.Event.subscribe("Page.beforeNewOneFadeIn", setVanta);
+  </script>
+</body>
+</html>
