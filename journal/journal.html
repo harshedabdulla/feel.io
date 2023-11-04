@@ -1,22 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- <script src="journal/js/path/or/uri/to/tinymce.min.js" referrerpolicy="origin"></script> -->
-    <script src="../journal/js/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- Include TinyMCE script -->
+    <script
+      src="../journal/js/tinymce/tinymce.min.js"
+      referrerpolicy="origin"
+    ></script>
     <script>
       tinymce.init({
-        selector: '#mytextarea'
+        selector: "#mytextarea",
+        plugins: "emoticons",
+        toolbar:
+          "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | emoticons",
+        statusbar: false,
+        menubar: false,
       });
+
+      function sendTextToServer() {
+        // Get the content from the TinyMCE editor
+        var content = tinymce.activeEditor.getContent();
+
+        // Log the content for reference
+        console.log("Content to send to the server:", content);
+
+        // Simulate a POST request to the server (replace this with an actual fetch)
+        console.log("Simulating a POST request to the server...");
+      }
     </script>
+    <link rel="stylesheet" href="journal.css" />
   </head>
 
   <body>
     <h1>TinyMCE Quick Start Guide</h1>
-    <form method="post">
-      <textarea id="mytextarea">Hello, World!</textarea>
-    </form>
+    <div class="text-editor">
+      <form method="post">
+        <textarea id="mytextarea">Hello, World!</textarea>
+      </form>
+      <button type="button" onclick="sendTextToServer()">Submit</button>
+    </div>
   </body>
 </html>
