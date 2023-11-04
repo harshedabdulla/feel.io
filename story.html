@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <title>Story Mode</title>
+    
+    
+    <style>
+        #chat-message::-webkit-scrollbar {
+  display: none;
+}
+      body {
+        background-image: url('cloudBG.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        font-family: "Trirong", serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      #chat-window {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: transparent;
+        border-radius: 10px;
+        box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+        
+      }
+
+      .main-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      #chat-messages {
+        height: 300px;
+        overflow-y: scroll;
+        border: 0px solid #ccc;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        opacity: 0.9;
+      }
+
+      .user-message, .bot-message {
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+      }
+
+      .user-message img, .bot-message img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        border-radius: 50%;
+      }
+
+      .mood-buttons {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .mood-buttons button {
+        margin: 10px;
+        padding: 10px;
+        font-size: 16px;
+        background-color: #007bff;
+        opacity: 0.9;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+      }
+
+      .mood-buttons button:hover {
+        background-color: #137ff3;
+      }
+
+      #chat-form {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        padding: 5px;
+      }
+
+      #chat-form input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+      }
+
+      #chat-form button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      #chat-form button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+    <body>
+    <div id="chat-window">
+      <div class="main-title">Story Mode</div>
+      <div id="chat-messages"></div>
+      <form id="chat-form">
+        <input
+          type="text"
+          id="chat-input"
+          autocomplete="off"
+          placeholder="Type your message here"
+          required
+        />
+        <button type="submit">Send</button>
+      </form>
+      <!-- Mood selection buttons -->
+      <div class="mood-buttons">
+        <button id="happy-button">😊</button>
+        <button id="good-button">😃</button>
+        <button id="nothing-button">👍</button>
+        <button id="average-button">🙂</button>
+        <button id="low-button">😞</button>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
