@@ -160,7 +160,20 @@ new Chart(moodChartCanvas.getContext("2d"), {
 }
 })
 }
-sendtopopup();
+//sendtopopup();
+
+fetch('http://localhost:3000/lasthour', {
+		method: 'POST',
+		headers: {
+            'Access-Control-Allow-Origin': '*',
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+		  
+		},
+		body: {hours:6},
+	  }).then((response) => { 
+        console.log(response.json() ) 
+    })
 
 
 

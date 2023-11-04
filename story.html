@@ -6,7 +6,7 @@
     
     
     <style>
-        .example::-webkit-scrollbar {
+        #chat-message::-webkit-scrollbar {
   display: none;
 }
       body {
@@ -26,6 +26,7 @@
         background-color: transparent;
         border-radius: 10px;
         box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+        
       }
 
       .main-title {
@@ -42,6 +43,7 @@
         padding: 10px;
         border-radius: 10px;
         background-color: #f9f9f9;
+        opacity: 0.9;
       }
 
       .user-message, .bot-message {
@@ -63,18 +65,19 @@
       }
 
       .mood-buttons button {
-        margin: 5px;
-        padding: 10px 20px;
+        margin: 10px;
+        padding: 10px;
         font-size: 16px;
         background-color: #007bff;
+        opacity: 0.9;
         color: #fff;
         border: none;
-        border-radius: 5px;
+        border-radius: 20px;
         cursor: pointer;
       }
 
       .mood-buttons button:hover {
-        background-color: #0056b3;
+        background-color: #137ff3;
       }
 
       #chat-form {
@@ -84,7 +87,7 @@
         margin-top: 20px;
         background-color: #f9f9f9;
         border: 1px solid #ccc;
-        border-radius: 5px;
+        border-radius: 20px;
         padding: 5px;
       }
 
@@ -92,6 +95,7 @@
         flex: 1;
         padding: 10px;
         border: none;
+        outline: none;
         border-radius: 5px;
       }
 
@@ -99,7 +103,7 @@
         background-color: #007bff;
         color: #fff;
         border: none;
-        border-radius: 5px;
+        border-radius: 20px;
         padding: 10px 20px;
         cursor: pointer;
       }
