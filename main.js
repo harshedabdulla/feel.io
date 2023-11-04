@@ -17,83 +17,9 @@ const app = initializeApp(firebaseConfig);
 const db  = getDatabase()
 const dbRef = ref(getDatabase());
 
-function sendtopopup(){
     
 
-    get(child(dbRef, `data`)).then((snapshot) => {
-		if (snapshot.exists()) {
-            let data = snapshot.val()
-            const latest = 6
-            const objectKeys = Object.keys(data);
-            data = objectKeys.slice(-latest).reduce((result, key) => {
-            result[key] = data[key];
-            return result;
-            }, {});
 
-            console.log(data);
-
-            const allCategories = [];
-
-            for (const key in data) {
-              const category = data[key].mood;
-              allCategories.push(category);
-            }
-            const categoryCounts = allCategories.reduce((acc, category) => {
-                acc[category] = (acc[category] || 0) + 1;
-                return acc;
-              }, {});
-              
-              // Step 2: Convert the object into an array of objects for sorting
-              const categoryArray = Object.entries(categoryCounts).map(([category, count]) => ({
-                category,
-                count,
-              }));
-              
-              // Step 3: Sort the array based on the frequency in descending order
-              categoryArray.sort((a, b) => b.count - a.count);
-              
-              // Step 4: Get the top 3 categories
-              
-            const top3Categories = categoryArray.slice(0, 3);
-            console.log(top3Categories[0]);
-            // Mood Over the Past 6 Hours Chart
-const moodChartCanvas = document.getElementById("moodChart");
-
-// Sample data for the three emotions in the "Current Mood" chart
-const x = top3Categories[0] ? top3Categories[0].category : "";
-const y = top3Categories[1] ? top3Categories[1].category : "";
-const z = top3Categories[2] ? top3Categories[2].category : "";
-const a = top3Categories[0] ? top3Categories[0].count : "";
-const b = top3Categories[1] ? top3Categories[1].count : "";
-const c = top3Categories[2] ? top3Categories[2].count : "";
-
-const currentMoodData = {
-    labels: [x, y, z],
-    data: [a,b,c] // Adjust the values as needed
-};
-
-const currentMoodChartCanvas = document.getElementById("currentMoodChart");
-new Chart(currentMoodChartCanvas.getContext("2d"), {
-    type: 'pie',
-    data: {
-        labels: currentMoodData.labels,
-        datasets: [{
-            data: currentMoodData.data,
-            backgroundColor: ['rgba(75, 192, 192, 0.8)', 'rgba(255, 99, 132, 0.8)', 'rgba(255, 205, 86, 0.8)'],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        plugins: {
-            legend: {
-                display: false
-            }
-        },
-        tooltip: {
-            enabled: false // Disable tooltips
-        }
-    }
-}); 
 // Sample data for the top 3 emotions at each hour
 const data1 = {
     labels: ["6 hours ago", "5 hours ago", "4 hours ago", "3 hours ago", "2 hours ago", "1 hour ago"],
@@ -153,16 +79,9 @@ new Chart(moodChartCanvas.getContext("2d"), {
     options: chartOptions
 });
 
+/**----------------------------------------------------------------------- */
 
-
-
-
-}
-})
-}
-//sendtopopup();
-
-fetch('http://localhost:3000/lasthour', {
+const resp = await fetch('http://localhost:3000/lasthours', {
 		method: 'POST',
 		headers: {
             'Access-Control-Allow-Origin': '*',
@@ -170,12 +89,51 @@ fetch('http://localhost:3000/lasthour', {
 			'Content-Type': 'application/json',
 		  
 		},
-		body: {hours:6},
-	  }).then((response) => { 
-        console.log(response.json() ) 
-    })
+		body: JSON.stringify({hours:6}),
+	  })
+const top3Categories = await resp.json();
+console.log(top3Categories)
+
+const moodChartCanvas = document.getElementById("moodChart");
+
+// Sample data for the three emotions in the "Current Mood" chart
+const x = top3Categories[0] ? top3Categories[0].mood : "";
+const y = top3Categories[1] ? top3Categories[1].mood : "";
+const z = top3Categories[2] ? top3Categories[2].mood : "";
+const a = top3Categories[0] ? top3Categories[0].count : "";
+const b = top3Categories[1] ? top3Categories[1].count : "";
+const c = top3Categories[2] ? top3Categories[2].count : "";
+
+const currentMoodData = {
+    labels: [x, y, z],
+    data: [a,b,c] // Adjust the values as needed
+};
+
+const currentMoodChartCanvas = document.getElementById("currentMoodChart");
+new Chart(currentMoodChartCanvas.getContext("2d"), {
+    type: 'pie',
+    data: {
+        labels: currentMoodData.labels,
+        datasets: [{
+            data: currentMoodData.data,
+            backgroundColor: ['rgba(75, 192, 192, 0.8)', 'rgba(255, 99, 132, 0.8)', 'rgba(255, 205, 86, 0.8)'],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        tooltip: {
+            enabled: false // Disable tooltips
+        }
+    }
+}); 
 
 
+/**----------------------------------------------------------------------- */
 
 
 
