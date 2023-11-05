@@ -33,13 +33,15 @@
     <link rel="stylesheet" href="journal.css" />
   </head>
 
-  <body>
-    <h1>TinyMCE Quick Start Guide</h1>
+  <body class="mainBody">
+    <h1>MY JOURNAL</h1>
     <div class="text-editor">
       <form method="post">
         <textarea id="mytextarea">Hello, World!</textarea>
       </form>
-      <button type="button" onclick="sendTextToServer()">Submit</button>
+      <button type="button" class="submitButton" onclick="sendTextToServer()">
+        Submit
+      </button>
     </div>
   </body>
 </html>
