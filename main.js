@@ -1,6 +1,6 @@
 import {initializeApp } from 'https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js'
 import { getDatabase, set, get, ref, child, push, onValue } from 'https://www.gstatic.com/firebasejs/10.3.0/firebase-database.js'
-  
+let url = "https://nodeformakeaton.onrender.com" 
 
 const firebaseConfig = {
     apiKey: "AIzaSyBLOrV8K_-MYavFlHf7HiYwUHmUQSt2YzA",
@@ -17,7 +17,7 @@ const app = initializeApp(firebaseConfig);
 const db  = getDatabase()
 const dbRef = ref(getDatabase());
 
-const resp1 = await fetch('http://localhost:3000/lasthours', {
+const resp1 = await fetch(url+"/lasthours", {
 		method: 'POST',
 		headers: {
             'Access-Control-Allow-Origin': '*',
@@ -100,7 +100,7 @@ new Chart(moodChartCanvas.getContext("2d"), {
 
 /**----------------------------------------------------------------------- */
 
-const resp = await fetch('http://localhost:3000/lasthours', {
+const resp = await fetch(url+"/lasthours", {
 		method: 'POST',
 		headers: {
             'Access-Control-Allow-Origin': '*',
@@ -184,7 +184,7 @@ new Chart(dailyMoodTrendsCanvas.getContext("2d"), {
 
 // Emotion History Chart (Pie Chart)
 
-const resp2 = await fetch('http://localhost:3000/normalmoods', {
+const resp2 = await fetch(url+"/normalmoods", {
 		method: 'POST',
 		headers: {
             'Access-Control-Allow-Origin': '*',
