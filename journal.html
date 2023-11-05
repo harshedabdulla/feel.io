@@ -6,7 +6,7 @@
 
     <!-- Include TinyMCE script -->
     <script
-      src="../journal/js/tinymce/tinymce.min.js"
+      src="./journal/js/tinymce/tinymce.min.js"
       referrerpolicy="origin"
     ></script>
     <script>
@@ -33,15 +33,23 @@
     <link rel="stylesheet" href="journal.css" />
   </head>
 
-  <body class="mainBody">
-    <h1>MY JOURNAL</h1>
-    <div class="text-editor">
-      <form method="post">
-        <textarea id="mytextarea">Hello, World!</textarea>
-      </form>
-      <button type="button" class="submitButton" onclick="sendTextToServer()">
-        Submit
-      </button>
+  <body>
+    <div class="header">
+      <h1>My Journal</h1>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="story.html">Story Mode</a>
+      </div>
+    </div>
+    <div class="main">
+      <div class="text-editor">
+        <form method="post">
+          <textarea id="mytextarea">Hello, World!</textarea>
+        </form>
+        <button type="button" class="submitButton" onclick="sendTextToServer()">
+          Submit
+        </button>
+      </div>
     </div>
   </body>
 </html>

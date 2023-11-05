@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <link href="https://fonts.cdnfonts.com/css/mostly-bonny" rel="stylesheet" />
+
     <title>Story Mode</title>
-    
-    
+
     <style>
-        #chat-message::-webkit-scrollbar {
-  display: none;
-}
+      #chat-message::-webkit-scrollbar {
+        display: none;
+      }
       body {
-        background-image: url('cloudBG.png');
+        background-image: url("/images/bluebg.png");
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
-        font-family: "Trirong", serif;
+        font-family: "Mostly Bonny", sans-serif;
         margin: 0;
         padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
       }
 
       #chat-window {
-        max-width: 600px;
-        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 85%;
+        height: 75%;
+        margin: auto;
         padding: 20px;
-        background-color: transparent;
+        border-radius: 40px 40px 0px 0px;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(15px);
         border-radius: 10px;
         box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
-        
+      }
+
+      .header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
       }
 
       .main-title {
@@ -36,23 +52,34 @@
         text-align: center;
       }
 
+      a {
+        text-decoration: none;
+        color: #000;
+        font-size: 16px;
+        font-weight: bold;
+        margin-right: 20px;
+      }
+
       #chat-messages {
         height: 300px;
+        width: 80%;
         overflow-y: scroll;
-        border: 0px solid #ccc;
+        border: 0px solid #a9b2d1;
         padding: 10px;
         border-radius: 10px;
         background-color: #f9f9f9;
         opacity: 0.9;
       }
 
-      .user-message, .bot-message {
+      .user-message,
+      .bot-message {
         margin: 10px 0;
         display: flex;
         align-items: center;
       }
 
-      .user-message img, .bot-message img {
+      .user-message img,
+      .bot-message img {
         width: 30px;
         height: 30px;
         margin-right: 10px;
@@ -68,7 +95,7 @@
         margin: 10px;
         padding: 10px;
         font-size: 16px;
-        background-color: #007bff;
+        background-color: #9dc1e6;
         opacity: 0.9;
         color: #fff;
         border: none;
@@ -77,7 +104,7 @@
       }
 
       .mood-buttons button:hover {
-        background-color: #137ff3;
+        background-color: #a7c7e7;
       }
 
       #chat-form {
@@ -113,7 +140,14 @@
       }
     </style>
   </head>
-    <body>
+  <body>
+    <div class="header">
+      <h1>Story Mode</h1>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="journal.html">Journal</a>
+      </div>
+    </div>
     <div id="chat-window">
       <div class="main-title">Story Mode</div>
       <div id="chat-messages"></div>
