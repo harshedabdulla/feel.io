@@ -35,6 +35,7 @@ lowButton.addEventListener("click", () => {
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const message = input.value;
+  console.log(message);
   sendMessage(message);
   input.value = "";
 });
