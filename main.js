@@ -108,7 +108,7 @@ const resp = await fetch(url+"/lasthours", {
 			'Content-Type': 'application/json',
 		  
 		},
-		body: JSON.stringify({hours:6}),
+		body: JSON.stringify({hours:10}),
 	  })
 const top3Categories = await resp.json();
 console.log(top3Categories)
